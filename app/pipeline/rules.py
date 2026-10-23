@@ -37,11 +37,14 @@ class RulesEngine:
                     rule_id=rid,
                     severity=Severity(rule["severity"]),
                     title_mr=rule.get("title_mr", ""),
+                    title_hi=rule.get("title_hi", ""),
                     title_en=rule.get("title_en", ""),
                     detail_mr=rule.get("explanation_mr", ""),
+                    detail_hi=rule.get("explanation_hi", ""),
                     detail_en=rule.get("explanation_en", ""),
                     field_path=rule.get("field_path"),
                     suggestion_mr=rule.get("what_to_do_mr"),
+                    suggestion_hi=rule.get("what_to_do_hi"),
                     suggestion_en=rule.get("what_to_do_en"),
                 ))
         flags.sort(key=lambda f: SEVERITY_ORDER.get(f.severity, 9))
