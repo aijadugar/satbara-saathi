@@ -161,12 +161,15 @@ class Flag(BaseModel):
     rule_id: str
     severity: Severity
     title_mr: str
+    title_hi: str = ""
     title_en: str
     detail_mr: str
+    detail_hi: str = ""
     detail_en: str
     evidence: list[str] = Field(default_factory=list)
     field_path: str | None = None
     suggestion_mr: str | None = None
+    suggestion_hi: str | None = None
     suggestion_en: str | None = None
 
 
