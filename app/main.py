@@ -2,22 +2,26 @@
 import uuid
 from pathlib import Path
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from app import __version__
 from app.config import get_settings
-from app.models.schema import (
-    HealthResponse, Language, ProcessingResult, ProcessingStatus,
-)
-from app.pipeline.preprocess import PreprocessingError, preprocess_image
-from app.pipeline.extract import extract_from_structured
-from app.pipeline.validate import validate
-from app.pipeline.rules import RulesEngine
-from app.pipeline.explain import generate_explanation
-from app.pipeline.checklist import generate_checklist
-from app.providers.fake_providers import FakeLLMProvider, FakeOCRProvider, FakeTTSProvider
 from app.logging_.impact import ImpactDB
+from app.models.schema import (
+    HealthResponse,
+    Language,
+    ProcessingResult,
+    ProcessingStatus,
+)
+from app.pipeline.checklist import generate_checklist
+from app.pipeline.explain import generate_explanation
+from app.pipeline.extract import extract_from_structured
+from app.pipeline.preprocess import PreprocessingError, preprocess_image
+from app.pipeline.rules import RulesEngine
+from app.pipeline.validate import validate
+from app.providers.fake_providers import FakeLLMProvider, FakeOCRProvider, FakeTTSProvider
 
 settings = get_settings()
 app = FastAPI(title=settings.app_name, version=settings.app_version)
@@ -34,7 +38,12 @@ jobs: dict[str, ProcessingResult] = {}
 
 WEB_DIR = Path(__file__).parent.parent / "web"
 if WEB_DIR.is_dir():
+    # Serve the SPA at root so http://localhost:8000/ shows the UI.
     app.mount("/static", StaticFiles(directory=str(WEB_DIR), html=True), name="web")
+
+    @app.get("/", response_class=HTMLResponse, include_in_schema=False)
+    async def _root(request: Request) -> HTMLResponse:
+        return FileResponse(str(WEB_DIR / "index.html"))
 
 
 @app.get("/health", response_model=HealthResponse)
