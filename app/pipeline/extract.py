@@ -1,10 +1,14 @@
 """Structured extraction: OCRResult → Land7x12."""
 import logging
-import re
 
 from app.models.schema import (
-    Area, AreaUnit, ExtractedField, Holder, Land7x12,
-    MutationEntry, OCRResult, OccupancyClass, OtherRight, TenantEntry,
+    Area,
+    ExtractedField,
+    Holder,
+    Land7x12,
+    OCRResult,
+    OtherRight,
+    TenantEntry,
 )
 
 logger = logging.getLogger(__name__)
