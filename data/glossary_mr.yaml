@@ -1,0 +1,49 @@
+# Marathi land-record glossary – every entry reviewed: false until approved.
+"7/12":
+  mr: "महाराष्ट्रातील मुख्य जमीन अभिलेख दस्तऐवज"
+  en: "Primary land record document in Maharashtra"
+  reviewed: false
+bhogwatdar:
+  mr: "जमीन वापरण्याचा आणि मालकीचा अधिकार असलेली व्यक्ती"
+  en: "Person with occupancy rights to land"
+  reviewed: false
+itar_adhikar:
+  mr: "जमिनीवरील इतर हक्क किंवा दायित्व"
+  en: "Other rights or encumbrances on the land"
+  reviewed: false
+boja:
+  mr: "जमिनीवरील आर्थिक भार किंवा तारण"
+  en: "Financial charge or mortgage on the land"
+  reviewed: false
+ferfar:
+  mr: "मालकी हक्क बदलांची नोंद"
+  en: "Mutation record of ownership changes"
+  reviewed: false
+kul:
+  mr: "शेती करण्याचा नोंदणीकृत अधिकार असलेला शेतकरी"
+  en: "Tenant with registered farming rights"
+  reviewed: false
+khata:
+  mr: "महसूल नोंदींमधील जमिनीचा खाते क्रमांक"
+  en: "Account number for the land in revenue records"
+  reviewed: false
+pot_kharab:
+  mr: "शेतीला न येणारी जमीन"
+  en: "Uncultivable land area"
+  reviewed: false
+aakarani:
+  mr: "जमिनीवरील महसूल / कर आकारणी"
+  en: "Revenue assessment on the land"
+  reviewed: false
+gat_number:
+  mr: "जमिनीची ओळख करणारा क्रमांक"
+  en: "Number identifying the land parcel"
+  reviewed: false
+e_karar:
+  mr: "इलेक्ट्रॉनिक करार / तारण नोंद"
+  en: "Electronic agreement / mortgage entry"
+  reviewed: false
+varas:
+  mr: "वारसा – मृत्यूनंतर संपत्ती मिळालेला कायदेशीर वारस"
+  en: "Legal heir who inherits property"
+  reviewed: false
