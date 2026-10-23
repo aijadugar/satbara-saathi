@@ -1,0 +1,44 @@
+[project]
+name = "satbara-saathi"
+version = "0.1.0"
+description = "Open-source tool to understand Maharashtra 7/12 (Satbara) extracts"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "python-multipart>=0.0.6",
+    "pyyaml>=6.0.1",
+    "Pillow>=10.2.0",
+    "opencv-python-headless>=4.9.0",
+    "numpy>=1.26.0",
+    "httpx>=0.26.0",
+    "structlog>=24.1.0",
+    "openai>=1.12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.2.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
