@@ -3,7 +3,6 @@ import struct
 
 from app.models.schema import (
     ExplanationResponse,
-    ExtractedField,
     Language,
     OCRPage,
     OCRResult,
