@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>सातबारा साथी | Satbara Saathi</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="upload" class="screen active">
+  <h1>सातबारा साथी</h1>
+  <p class="tag">७/१२ उतारा समजून घ्या</p>
+  <div class="lang-row">
+    <button data-lang="mr" class="on">मराठी</button>
+    <button data-lang="hi">हिंदी</button>
+    <button data-lang="en">English</button>
+  </div>
+  <label class="consent"><input type="checkbox" id="consent"> मी समजतो/ते की हे केवळ माहितीसाठी आहे</label>
+  <button id="btn-upload" class="big">📷 अपलोड / फोटो काढा</button>
+  <input type="file" id="file" accept="image/*,.pdf" hidden>
+  <p id="err" class="err" hidden></p>
+</div>
+<div id="results" class="screen">
+  <h2>विश्लेषण</h2>
+  <div id="summary"></div>
+  <div id="flags"></div>
+  <div id="checklist"></div>
+  <button id="btn-listen">🔊 ऐका</button>
+  <p class="disc">हे विश्लेषण केवळ माहितीसाठी आहे. कायदेशीर सल्ला नाही.</p>
+  <div class="fb">
+    <span>स्पष्ट होते का?</span>
+    <button id="fb-yes">✓ हो</button>
+    <button id="fb-no">✗ नाही</button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
