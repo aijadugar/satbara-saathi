@@ -1,4 +1,4 @@
-from app.models.schema import ExtractedField, Holder, OtherRight, TenantEntry
+from app.models.schema import ExtractedField, Holder
 from app.pipeline.rules import RulesEngine
 
 engine = RulesEngine()
