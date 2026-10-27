@@ -5,10 +5,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>सातबारा साथी | Satbara Saathi</title>
+  <meta name="description" content="७/१२ उतारा सोप्या मराठीत समजून घ्या. हॅकेथॉन प्रोजेक्ट.">
   <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    /* Trust & hackathon additions. Scoped to new classes so styles.css is untouched. */
+    :root {
+      --t-ink: #12302e;
+      --t-bg: #eef5f3;
+      --t-line: #c3d8d3;
+      --t-accent: #0f6b5f;
+      --t-warn-bg: #fff4d6;
+      --t-warn-ink: #5c4300;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --t-ink: #dcebe8;
+        --t-bg: #162523;
+        --t-line: #2f4a46;
+        --t-accent: #5fc5b3;
+        --t-warn-bg: #3a2f10;
+        --t-warn-ink: #f2dfa6;
+      }
+    }
+    .hack-banner {
+      display: flex; flex-wrap: wrap; gap: .4rem .8rem; align-items: center; justify-content: center;
+      padding: .5rem .75rem; font-size: .85rem;
+      background: var(--t-accent); color: #fff;
+    }
+    .hack-banner b { font-weight: 700; }
+    .hack-banner .pill {
+      padding: .1rem .55rem; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.6); font-size: .78rem;
+    }
+    .trust { display: grid; gap: .6rem; margin: 1rem 0; }
+    .trust-item {
+      display: flex; gap: .65rem; align-items: flex-start;
+      padding: .7rem .8rem; border: 1px solid var(--t-line); border-radius: 10px;
+      background: var(--t-bg); color: var(--t-ink); font-size: .92rem; line-height: 1.45;
+    }
+    .trust-item .ic { font-size: 1.2rem; line-height: 1.2; }
+    .trust-item strong { display: block; }
+    .how {
+      margin: .5rem 0 1rem; border: 1px solid var(--t-line); border-radius: 10px;
+      padding: .6rem .8rem; color: var(--t-ink); font-size: .92rem;
+    }
+    .how summary { cursor: pointer; font-weight: 600; }
+    .how summary:focus-visible, .link-verify:focus-visible { outline: 3px solid var(--t-accent); outline-offset: 2px; }
+    .how ol { margin: .6rem 0 0; padding-left: 1.2rem; line-height: 1.6; }
+    .ai-badge {
+      display: inline-block; margin: 0 0 .6rem; padding: .2rem .6rem; border-radius: 999px;
+      background: var(--t-bg); border: 1px solid var(--t-line); color: var(--t-ink); font-size: .82rem;
+    }
+    .verify-box {
+      margin: 1rem 0; padding: .8rem; border-radius: 10px;
+      background: var(--t-warn-bg); color: var(--t-warn-ink); font-size: .92rem; line-height: 1.5;
+    }
+    .link-verify { color: inherit; font-weight: 700; }
+    .site-foot {
+      margin: 1.5rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--t-line);
+      font-size: .82rem; color: var(--t-ink); text-align: center; line-height: 1.7;
+    }
+    .site-foot a { color: var(--t-accent); }
+    @media (prefers-reduced-motion: no-preference) {
+      .trust-item { transition: border-color .15s; }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- TODO: replace [Hackathon Name] with the real event name -->
+  <div class="hack-banner" role="note">
+    <span>🏆 <b>हॅकेथॉन प्रोजेक्ट</b> · [Hackathon Name] 2026</span>
+    <span class="pill">प्रोटोटाइप</span>
+  </div>
+
   <div id="upload" class="screen active">
     <h1>सातबारा साथी</h1>
     <p class="tag">७/१२ उतारा समजून घ्या</p>
@@ -17,17 +87,56 @@
       <button data-lang="hi">हिंदी</button>
       <button data-lang="en">English</button>
     </div>
+
+    <!-- TODO: confirm each claim below matches what the backend really does before demo day -->
+    <div class="trust" aria-label="विश्वासार्हता">
+      <div class="trust-item">
+        <span class="ic" aria-hidden="true">🔒</span>
+        <span><strong>तुमची माहिती सुरक्षित</strong>
+          उतारा फक्त विश्लेषणासाठी वापरला जातो. खाते तयार करावे लागत नाही.</span>
+      </div>
+      <div class="trust-item">
+        <span class="ic" aria-hidden="true">⚖️</span>
+        <span><strong>कायदेशीर सल्ला नाही</strong>
+          हे साधन समजून घेण्यासाठी आहे. कोणताही निर्णय घेण्यापूर्वी तलाठी किंवा वकिलांकडून खात्री करा.</span>
+      </div>
+      <div class="trust-item">
+        <span class="ic" aria-hidden="true">✅</span>
+        <span><strong>अधिकृत नोंदीशी पडताळा</strong>
+          निकाल महाभूलेख वरील अधिकृत ७/१२ शी जुळवून पाहा.</span>
+      </div>
+    </div>
+
+    <details class="how">
+      <summary>हे कसे काम करते?</summary>
+      <ol>
+        <li>तुम्ही ७/१२ चा फोटो किंवा PDF अपलोड करता.</li>
+        <li>आम्ही त्यातील मजकूर वाचतो.</li>
+        <li>AI तो सोप्या भाषेत समजावतो आणि धोक्याचे मुद्दे दाखवतो.</li>
+        <li>तुम्ही अधिकृत नोंदीशी तपासून खात्री करता.</li>
+      </ol>
+    </details>
+
     <label class="consent"><input type="checkbox" id="consent"> मी समजतो/ते की हे केवळ माहितीसाठी आहे</label>
     <button id="btn-upload" class="big">📷 अपलोड / फोटो काढा</button>
     <input type="file" id="file" accept="image/*,.pdf" hidden>
     <p id="err" class="err" hidden></p>
   </div>
+
   <div id="results" class="screen">
     <h2>विश्लेषण</h2>
+    <span class="ai-badge">🤖 AI ने तयार केले · अधिकृत दस्तऐवज नाही</span>
     <div id="summary"></div>
     <div id="flags"></div>
     <div id="checklist"></div>
     <button id="btn-listen">🔊 ऐका</button>
+
+    <div class="verify-box">
+      ⚠️ AI कधी कधी चुकू शकतो. महत्त्वाच्या व्यवहारापूर्वी
+      <a class="link-verify" href="https://bhulekh.mahabhumi.gov.in" target="_blank" rel="noopener noreferrer">महाभूलेख</a>
+      वर किंवा तलाठी कार्यालयात खात्री करा.
+    </div>
+
     <p class="disc">हे विश्लेषण केवळ माहितीसाठी आहे. कायदेशीर सल्ला नाही.</p>
     <div class="fb">
       <span>स्पष्ट होते का?</span>
@@ -35,6 +144,14 @@
       <button id="fb-no">✗ नाही</button>
     </div>
   </div>
+
+  <!-- TODO: fill in team name, repo link, and version -->
+  <footer class="site-foot">
+    <div>[Team Name] ने बनवले · [Hackathon Name] 2026</div>
+    <div><a href="https://github.com/your-org/satbara-saathi" target="_blank" rel="noopener noreferrer">GitHub वर पाहा</a> · v0.1 प्रोटोटाइप</div>
+    <div>मर्यादा: हस्तलिखित किंवा अस्पष्ट उतारे चुकीचे वाचले जाऊ शकतात.</div>
+  </footer>
+
   <script src="/static/app.js"></script>
 </body>
 
