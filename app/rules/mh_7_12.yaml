@@ -1,0 +1,154 @@
+# ⚠️ Rules must be reviewed by a Maharashtra revenue-law professional
+#    before public release. Do NOT cite specific law sections unless supplied.
+
+rules:
+  - id: R01
+    severity: serious
+    title_en: "Financial Encumbrance Detected"
+    title_mr: "आर्थिक भार/दायित्व आढळला"
+    explanation_en: >
+      The document shows a bank, loan, tagai, e-karar, or charge (boja) on this land.
+      The land may be mortgaged. Confirm loan status with the lender before paying anything.
+    explanation_mr: >
+      या दस्तऐवजात जमिनीवर बँक, कर्ज, तागडी, ई-करार किंवा बोजा दिसतो.
+      जमीन गहाण असू शकते. पैसे देण्यापूर्वी कर्जदार बँकेशी संपर्क साधा.
+    what_to_do_en: "Contact the bank/lender. Get encumbrance certificate. Ensure dues are cleared."
+    what_to_do_mr: "बँकेशी संपर्क साधा. भार प्रमाणपत्र मिळवा. थकित रक्कम भरली आहे याची खात्री करा."
+    needs_legal_review: true
+    field_path: "other_rights"
+
+  - id: R02
+    severity: check
+    title_en: "Multiple Land Owners"
+    title_mr: "एकाधिक जमीन मालक"
+    explanation_en: >
+      More than one person owns this land. All co-owners (or valid authority) must consent to a sale.
+    explanation_mr: >
+      या जमिनीला एकाधिक मालक आहेत. विक्रीसाठी सर्व सहमालकांची संमती आवश्यक आहे.
+    what_to_do_en: "Get written consent from all co-owners."
+    what_to_do_mr: "सर्व सहमालकांकडून लेखी संमती मिळवा."
+    needs_legal_review: true
+    field_path: "holders"
+
+  - id: R03
+    severity: serious
+    title_en: "Minor Owner Detected"
+    title_mr: "अल्पवयीन मालक आढळला"
+    explanation_en: >
+      A holder is marked as minor. Special legal requirements apply.
+      A guardian generally cannot sell a minor's property without court permission.
+    explanation_mr: >
+      एक धारक अल्पवयीन आहे. विशेष कायदेशीर आवश्यकता लागू होतात.
+      न्यायालयाची परवानगीशिवाय पालक अल्पवयीनाची मालमत्ता विकू शकत नाही.
+    what_to_do_en: "Obtain guardianship certificate and court permission."
+    what_to_do_mr: "पालकत्व प्रमाणपत्र आणि न्यायालय परवानगी मिळवा."
+    needs_legal_review: true
+    field_path: "holders[].is_minor_marked"
+
+  - id: R04
+    severity: serious
+    title_en: "Class 2 Occupancy – Restricted Tenure"
+    title_mr: "वर्ग २ भोगवटा – मर्यादित ताबा"
+    explanation_en: >
+      The land is Class 2 bhogwatadar. Transfer may require revenue-authority permission.
+    explanation_mr: >
+      जमीन वर्ग २ भोगवटादार आहे. हस्तांतरणासाठी महसूल अधिकाऱ्यांची परवानगी आवश्यक असू शकते.
+    what_to_do_en: "Check with Tahsildar about transfer permission."
+    what_to_do_mr: "हस्तांतरण परवानगीसाठी तहसीलदारांशी संपर्क साधा."
+    needs_legal_review: true
+    field_path: "bhogwatdar_class"
+
+  - id: R05
+    severity: serious
+    title_en: "Tenant / Cultivator Recorded"
+    title_mr: "कुळ / शेतकरी नोंद आढळली"
+    explanation_en: >
+      A tenant (kul) is recorded. Tenants have protected rights under Maharashtra tenancy law.
+      Their consent may be needed; they may have purchase rights.
+    explanation_mr: >
+      कुळ नोंद आहे. महाराष्ट्र कुळ कायद्यानुसार कुळांना संरक्षण आहे.
+      त्यांची संमती आवश्यक असू शकते; त्यांना खरेदी हक्क असू शकतो.
+    what_to_do_en: "Identify the tenant. Check purchase rights. Get consent."
+    what_to_do_mr: "कुळ ओळखा. खरेदी हक्क तपासा. संमती मिळवा."
+    needs_legal_review: true
+    field_path: "tenant_entries"
+
+  - id: R06
+    severity: check
+    title_en: "Government / Institution / Trust Ownership"
+    title_mr: "सरकारी / संस्था / ट्रस्ट मालकी"
+    explanation_en: >
+      A holder appears to be a government body, institution, or trust.
+      Transfers involve special procedures.
+    explanation_mr: >
+      धारक सरकारी संस्था किंवा ट्रस्ट असल्याचे दिसते. हस्तांतरणासाठी विशेष प्रक्रिया आवश्यक आहेत.
+    what_to_do_en: "Verify the entity's authority and transfer procedure."
+    what_to_do_mr: "संस्थेचे अधिकार आणि हस्तांतरण प्रक्रिया तपासा."
+    needs_legal_review: true
+    field_path: "holders[].name"
+
+  - id: R07
+    severity: check
+    title_en: "Inheritance Mutation Detected"
+    title_mr: "वारसा फेरफार आढळला"
+    explanation_en: >
+      A mutation appears to be through inheritance (वारस). Verify the chain of title.
+    explanation_mr: >
+      फेरफार वारसा मार्गाने झाल्याचे दिसते. मालकी साखळी तपासा.
+    what_to_do_en: "Verify all heirs signed. Get death and heir certificates."
+    what_to_do_mr: "सर्व वारसांनी सही केली आहे का ते तपासा. मृत्यू आणि वारसा प्रमाणपत्र मिळवा."
+    needs_legal_review: true
+    field_path: "mutation_entries"
+
+  - id: R08
+    severity: check
+    title_en: "Area Arithmetic Mismatch"
+    title_mr: "क्षेत्रफळ गणितात तफावत"
+    explanation_en: >
+      Cultivable + pot-kharab does not equal total area (beyond rounding tolerance).
+    explanation_mr: >
+      शेतीलायक + पोटखिळी = एकूण क्षेत्र यात तफावत आहे.
+    what_to_do_en: "Re-check the original document. Ask talathi if needed."
+    what_to_do_mr: "मूळ दस्तऐवज पुन्हा तपासा. आवश्यक असल्यास तलाठीकडे विचारा."
+    needs_legal_review: false
+    field_path: "area"
+
+  - id: R09
+    severity: info
+    title_en: "No Digital Signature / Verification Code"
+    title_mr: "डिजिटल स्वाक्षरी / सत्यापन कोड नाही"
+    explanation_en: >
+      The extract does not appear to be digitally signed. Verify on Mahabhulekh portal.
+    explanation_mr: >
+      उताऱ्यावर डिजिटल स्वाक्षरी दिसत नाही. महाभूलेख पोर्टलवर सत्यापित करा.
+    what_to_do_en: "Visit mahabhulekh.maharashtra.gov.in and verify."
+    what_to_do_mr: "mahabhulekh.maharashtra.gov.in वर सत्यापित करा."
+    needs_legal_review: false
+    field_path: "digitally_signed"
+
+  - id: R10
+    severity: serious
+    title_en: "Seller Name Does Not Match Holders"
+    title_mr: "विक्रेत्याचे नाव धारकांशी जुळत नाही"
+    explanation_en: >
+      The user-entered seller name was not found among the recorded holders.
+    explanation_mr: >
+      वापरकर्त्याने दिलेले विक्रेत्याचे नाव नोंदवलेल्या धारकांमध्ये आढळले नाही.
+    what_to_do_en: "Double-check the seller's identity against the 7/12."
+    what_to_do_mr: "7/12 च्या आधारे विक्रेत्याची ओळख पुन्हा तपासा."
+    needs_legal_review: true
+    field_path: "holders"
+
+  - id: R11
+    severity: check
+    title_en: "Low-Confidence Fields Not Confirmed"
+    title_mr: "कमी-विश्वास फील्ड पुष्टी झाली नाही"
+    explanation_en: >
+      Some key fields had low OCR confidence and were not confirmed by the user.
+      Explanation is blocked until confirmation.
+    explanation_mr: >
+      काही महत्त्वाची फील्ड कमी विश्वासाची होती आणि वापरकर्त्याने पुष्टी केलेली नाही.
+    what_to_do_en: "Please confirm the highlighted fields."
+    what_to_do_mr: "कृपया हायलाइट केलेली फील्ड पुष्टी करा."
+    needs_legal_review: false
+    field_path: null

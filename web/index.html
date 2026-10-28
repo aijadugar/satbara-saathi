@@ -3,156 +3,348 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>सातबारा साथी | Satbara Saathi</title>
   <meta name="description" content="७/१२ उतारा सोप्या मराठीत समजून घ्या. हॅकेथॉन प्रोजेक्ट.">
-  <link rel="stylesheet" href="/static/styles.css">
-  <style>
-    /* Trust & hackathon additions. Scoped to new classes so styles.css is untouched. */
-    :root {
-      --t-ink: #12302e;
-      --t-bg: #eef5f3;
-      --t-line: #c3d8d3;
-      --t-accent: #0f6b5f;
-      --t-warn-bg: #fff4d6;
-      --t-warn-ink: #5c4300;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --t-ink: #dcebe8;
-        --t-bg: #162523;
-        --t-line: #2f4a46;
-        --t-accent: #5fc5b3;
-        --t-warn-bg: #3a2f10;
-        --t-warn-ink: #f2dfa6;
-      }
-    }
-    .hack-banner {
-      display: flex; flex-wrap: wrap; gap: .4rem .8rem; align-items: center; justify-content: center;
-      padding: .5rem .75rem; font-size: .85rem;
-      background: var(--t-accent); color: #fff;
-    }
-    .hack-banner b { font-weight: 700; }
-    .hack-banner .pill {
-      padding: .1rem .55rem; border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.6); font-size: .78rem;
-    }
-    .trust { display: grid; gap: .6rem; margin: 1rem 0; }
-    .trust-item {
-      display: flex; gap: .65rem; align-items: flex-start;
-      padding: .7rem .8rem; border: 1px solid var(--t-line); border-radius: 10px;
-      background: var(--t-bg); color: var(--t-ink); font-size: .92rem; line-height: 1.45;
-    }
-    .trust-item .ic { font-size: 1.2rem; line-height: 1.2; }
-    .trust-item strong { display: block; }
-    .how {
-      margin: .5rem 0 1rem; border: 1px solid var(--t-line); border-radius: 10px;
-      padding: .6rem .8rem; color: var(--t-ink); font-size: .92rem;
-    }
-    .how summary { cursor: pointer; font-weight: 600; }
-    .how summary:focus-visible, .link-verify:focus-visible { outline: 3px solid var(--t-accent); outline-offset: 2px; }
-    .how ol { margin: .6rem 0 0; padding-left: 1.2rem; line-height: 1.6; }
-    .ai-badge {
-      display: inline-block; margin: 0 0 .6rem; padding: .2rem .6rem; border-radius: 999px;
-      background: var(--t-bg); border: 1px solid var(--t-line); color: var(--t-ink); font-size: .82rem;
-    }
-    .verify-box {
-      margin: 1rem 0; padding: .8rem; border-radius: 10px;
-      background: var(--t-warn-bg); color: var(--t-warn-ink); font-size: .92rem; line-height: 1.5;
-    }
-    .link-verify { color: inherit; font-weight: 700; }
-    .site-foot {
-      margin: 1.5rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--t-line);
-      font-size: .82rem; color: var(--t-ink); text-align: center; line-height: 1.7;
-    }
-    .site-foot a { color: var(--t-accent); }
-    @media (prefers-reduced-motion: no-preference) {
-      .trust-item { transition: border-color .15s; }
-    }
-  </style>
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0d5c4f" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101917" media="(prefers-color-scheme: dark)">
+  <!-- FastAPI serves this SPA at "/" and also mounts the whole web/ folder at
+       "/static" (see app/main.py). Work out which base resolves, so the page
+       loads whether it is served from the app root, from /static/, from any
+       other static host, or opened straight off disk. -->
+  <script>
+    (function () {
+      var fromDisk = location.protocol === 'file:';
+      var underStatic = /\/static\//.test(location.pathname);
+      window.__assetBase = (fromDisk || underStatic) ? '' : '/static/';
+      window.__assetOther = (fromDisk || underStatic) ? '/static/' : '';
+    })();
+  </script>
+  <script>
+    (function () {
+      var tried = false;
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = window.__assetBase + 'styles.css';
+      link.onerror = function () {
+        if (tried) return;
+        tried = true;
+        link.href = window.__assetOther + 'styles.css';
+      };
+      document.head.appendChild(link);
+    })();
+  </script>
 </head>
 
 <body>
-  <!-- TODO: replace [Hackathon Name] with the real event name -->
+  <a class="skip-link" href="#main" data-i18n="skip"></a>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="wrap topbar-in">
+      <button class="brand" id="brand-home" type="button">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+            <path d="M14 3v5h5" />
+            <path d="M8.5 15.5c1.2-2.2 4.3-2.6 5.5-.6" />
+            <path d="M11.2 14.6v-2.4" />
+          </svg>
+        </span>
+        <span class="brand-txt">
+          <strong data-i18n="brand"></strong>
+          <small data-i18n="brand_sub"></small>
+        </span>
+      </button>
+
+      <div class="lang-switch" role="group" aria-label="भाषा / Language">
+        <button type="button" data-lang="mr" class="on" aria-pressed="true">मराठी</button>
+        <button type="button" data-lang="hi" aria-pressed="false">हिंदी</button>
+        <button type="button" data-lang="en" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- TODO: set the real team / event names in BRAND at the top of app.js (not here) -->
   <div class="hack-banner" role="note">
-    <span>🏆 <b>हॅकेथॉन प्रोजेक्ट</b> · [Hackathon Name] 2026</span>
-    <span class="pill">प्रोटोटाइप</span>
+    <span>🏆 <b data-i18n="hack_title"></b> · <span data-i18n="hack_event"></span></span>
+    <span class="pill" data-i18n="proto"></span>
   </div>
 
-  <div id="upload" class="screen active">
-    <h1>सातबारा साथी</h1>
-    <p class="tag">७/१२ उतारा समजून घ्या</p>
-    <div class="lang-row">
-      <button data-lang="mr" class="on">मराठी</button>
-      <button data-lang="hi">हिंदी</button>
-      <button data-lang="en">English</button>
-    </div>
+  <main id="main" class="wrap">
 
-    <!-- TODO: confirm each claim below matches what the backend really does before demo day -->
-    <div class="trust" aria-label="विश्वासार्हता">
-      <div class="trust-item">
-        <span class="ic" aria-hidden="true">🔒</span>
-        <span><strong>तुमची माहिती सुरक्षित</strong>
-          उतारा फक्त विश्लेषणासाठी वापरला जातो. खाते तयार करावे लागत नाही.</span>
+    <!-- ══ Screen 1 · Upload ═══════════════════════════════════ -->
+    <section id="screen-upload" class="screen is-active" aria-labelledby="hero-title">
+      <div class="hero">
+        <span class="hero-badge" data-i18n="hero_badge"></span>
+        <h1 id="hero-title" data-i18n="hero_title"></h1>
+        <p class="hero-sub" data-i18n="hero_sub"></p>
       </div>
-      <div class="trust-item">
-        <span class="ic" aria-hidden="true">⚖️</span>
-        <span><strong>कायदेशीर सल्ला नाही</strong>
-          हे साधन समजून घेण्यासाठी आहे. कोणताही निर्णय घेण्यापूर्वी तलाठी किंवा वकिलांकडून खात्री करा.</span>
+
+      <div class="panel panel-upload">
+        <div class="drop" id="drop" tabindex="-1" aria-describedby="drop-hint">
+          <div class="drop-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 16V4" />
+              <path d="m7.5 8.5 4.5-4.5 4.5 4.5" />
+              <path d="M4 15v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3" />
+            </svg>
+          </div>
+          <p class="drop-title" data-i18n="drop_title"></p>
+          <p class="drop-sub" data-i18n="drop_sub"></p>
+          <div class="drop-actions">
+            <button type="button" class="btn btn-primary" id="btn-pick">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 5h16v14H4z" />
+                <path d="m4 15 4.5-4.5 4 4L16 11l4 4" />
+              </svg>
+              <span data-i18n="drop_btn"></span>
+            </button>
+            <button type="button" class="btn btn-ghost" id="btn-camera">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.2l1-1.6h6.6l1 1.6h1.2A2.5 2.5 0 0 1 19 8.5v8A2.5 2.5 0 0 1 16.5 19h-11A2.5 2.5 0 0 1 3 16.5z" />
+                <circle cx="11" cy="12.5" r="3.2" />
+              </svg>
+              <span data-i18n="drop_camera"></span>
+            </button>
+          </div>
+          <p class="drop-hint" id="drop-hint" data-i18n="drop_hint"></p>
+        </div>
+
+        <p class="lock-note" id="drop-lock" data-i18n="drop_locked" hidden></p>
+
+        <label class="consent" id="consent-row">
+          <input type="checkbox" id="consent">
+          <span data-i18n="consent"></span>
+        </label>
+
+        <p id="err" class="err" role="alert" hidden></p>
+
+        <input type="file" id="file" accept="image/*" hidden>
+        <input type="file" id="file-camera" accept="image/*" capture="environment" hidden>
       </div>
-      <div class="trust-item">
-        <span class="ic" aria-hidden="true">✅</span>
-        <span><strong>अधिकृत नोंदीशी पडताळा</strong>
-          निकाल महाभूलेख वरील अधिकृत ७/१२ शी जुळवून पाहा.</span>
+
+      <div class="trust" role="list" aria-label="विश्वासार्हता">
+        <div class="trust-item" role="listitem">
+          <span class="ic" aria-hidden="true">🔒</span>
+          <span class="tx"><strong data-i18n="trust1_h"></strong><span data-i18n="trust1_b"></span></span>
+        </div>
+        <div class="trust-item" role="listitem">
+          <span class="ic" aria-hidden="true">⚖️</span>
+          <span class="tx"><strong data-i18n="trust2_h"></strong><span data-i18n="trust2_b"></span></span>
+        </div>
+        <div class="trust-item" role="listitem">
+          <span class="ic" aria-hidden="true">✅</span>
+          <span class="tx"><strong data-i18n="trust3_h"></strong><span data-i18n="trust3_b"></span></span>
+        </div>
       </div>
-    </div>
 
-    <details class="how">
-      <summary>हे कसे काम करते?</summary>
-      <ol>
-        <li>तुम्ही ७/१२ चा फोटो किंवा PDF अपलोड करता.</li>
-        <li>आम्ही त्यातील मजकूर वाचतो.</li>
-        <li>AI तो सोप्या भाषेत समजावतो आणि धोक्याचे मुद्दे दाखवतो.</li>
-        <li>तुम्ही अधिकृत नोंदीशी तपासून खात्री करता.</li>
-      </ol>
-    </details>
+      <details class="how">
+        <summary>
+          <span data-i18n="how_sum"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </summary>
+        <ol class="how-steps">
+          <li><span class="n">1</span><span data-i18n="how1"></span></li>
+          <li><span class="n">2</span><span data-i18n="how2"></span></li>
+          <li><span class="n">3</span><span data-i18n="how3"></span></li>
+          <li><span class="n">4</span><span data-i18n="how4"></span></li>
+        </ol>
+      </details>
+    </section>
 
-    <label class="consent"><input type="checkbox" id="consent"> मी समजतो/ते की हे केवळ माहितीसाठी आहे</label>
-    <button id="btn-upload" class="big">📷 अपलोड / फोटो काढा</button>
-    <input type="file" id="file" accept="image/*,.pdf" hidden>
-    <p id="err" class="err" hidden></p>
-  </div>
+    <!-- ══ Screen 2 · Analyzing ════════════════════════════════ -->
+    <section id="screen-analyzing" class="screen" aria-labelledby="analyzing-title">
+      <div class="panel panel-analyzing">
+        <div class="doc-preview">
+          <img id="preview" alt="" hidden>
+          <div class="doc-preview-ic" id="preview-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+              <path d="M14 3v5h5" />
+            </svg>
+          </div>
+          <div class="doc-meta">
+            <strong id="doc-name"></strong>
+            <span id="doc-size"></span>
+          </div>
+        </div>
 
-  <div id="results" class="screen">
-    <h2>विश्लेषण</h2>
-    <span class="ai-badge">🤖 AI ने तयार केले · अधिकृत दस्तऐवज नाही</span>
-    <div id="summary"></div>
-    <div id="flags"></div>
-    <div id="checklist"></div>
-    <button id="btn-listen">🔊 ऐका</button>
+        <h2 id="analyzing-title" data-i18n="analyzing_title"></h2>
+        <p class="muted" data-i18n="analyzing_sub"></p>
 
-    <div class="verify-box">
-      ⚠️ AI कधी कधी चुकू शकतो. महत्त्वाच्या व्यवहारापूर्वी
-      <a class="link-verify" href="https://bhulekh.mahabhumi.gov.in" target="_blank" rel="noopener noreferrer">महाभूलेख</a>
-      वर किंवा तलाठी कार्यालयात खात्री करा.
-    </div>
+        <ol class="steps" id="steps">
+          <li data-stage="0"><span class="dot"></span><span data-i18n="stage1"></span></li>
+          <li data-stage="1"><span class="dot"></span><span data-i18n="stage2"></span></li>
+          <li data-stage="2"><span class="dot"></span><span data-i18n="stage3"></span></li>
+          <li data-stage="3"><span class="dot"></span><span data-i18n="stage4"></span></li>
+        </ol>
+      </div>
+    </section>
 
-    <p class="disc">हे विश्लेषण केवळ माहितीसाठी आहे. कायदेशीर सल्ला नाही.</p>
-    <div class="fb">
-      <span>स्पष्ट होते का?</span>
-      <button id="fb-yes">✓ हो</button>
-      <button id="fb-no">✗ नाही</button>
-    </div>
-  </div>
+    <!-- ══ Screen 3 · Results ══════════════════════════════════ -->
+    <section id="screen-results" class="screen" aria-labelledby="res-title">
+      <div class="res-head">
+        <div>
+          <h2 id="res-title" data-i18n="res_title"></h2>
+          <p class="muted mono" id="res-job"></p>
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" id="btn-new">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+          <span data-i18n="new_analysis"></span>
+        </button>
+      </div>
 
-  <!-- TODO: fill in team name, repo link, and version -->
+      <div class="result-grid">
+        <aside class="col-side">
+          <!-- Deterministic, rule-based verdict -->
+          <div class="verdict" id="verdict">
+            <div class="verdict-top">
+              <span class="verdict-ic" aria-hidden="true"></span>
+              <div>
+                <span class="verdict-kicker" data-i18n="verdict_kicker"></span>
+                <h3 class="verdict-title" id="verdict-title"></h3>
+              </div>
+            </div>
+            <p class="verdict-body" id="verdict-body"></p>
+            <div class="counts" id="counts"></div>
+            <p class="verdict-src" data-i18n="verdict_src"></p>
+          </div>
+        </aside>
+
+        <div class="col-main">
+          <!-- AI plain-language explanation -->
+          <article class="card card-summary">
+            <div class="card-head">
+              <h3 data-i18n="sec_summary"></h3>
+              <span class="badge-ai" data-i18n="ai_badge"></span>
+            </div>
+            <p class="summary-text" id="summary"></p>
+            <p class="lang-note" id="lang-note" hidden></p>
+            <div class="card-actions">
+              <button type="button" class="btn btn-sm btn-ghost" id="btn-listen">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 9.5h3l4-3.5v12l-4-3.5H4z" />
+                  <path d="M15.5 9a4 4 0 0 1 0 6" />
+                  <path d="M18 6.5a7.5 7.5 0 0 1 0 11" />
+                </svg>
+                <span data-i18n="listen"></span>
+              </button>
+              <button type="button" class="btn btn-sm btn-ghost" id="btn-copy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="11" height="11" rx="2" />
+                  <path d="M5 15V5a2 2 0 0 1 2-2h8" />
+                </svg>
+                <span data-i18n="copy"></span>
+              </button>
+              <button type="button" class="btn btn-sm btn-ghost" id="btn-print">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 9V4h10v5" />
+                  <rect x="4" y="9" width="16" height="7" rx="2" />
+                  <path d="M7 14h10v6H7z" />
+                </svg>
+                <span data-i18n="print"></span>
+              </button>
+            </div>
+          </article>
+
+          <section class="card" aria-labelledby="sec-flags-h">
+            <div class="card-head">
+              <h3 id="sec-flags-h" data-i18n="sec_flags"></h3>
+              <span class="count-chip" id="flags-count"></span>
+            </div>
+            <div id="flags"></div>
+          </section>
+
+          <section class="card" aria-labelledby="sec-check-h">
+            <div class="card-head">
+              <h3 id="sec-check-h" data-i18n="sec_checklist"></h3>
+              <span class="count-chip" id="check-count"></span>
+            </div>
+            <p class="muted small" data-i18n="checklist_sub"></p>
+            <ol class="checklist" id="checklist"></ol>
+            <div class="progress" id="check-progress" hidden><i></i></div>
+          </section>
+
+          <section class="card" aria-labelledby="sec-quality-h" id="quality-card" hidden>
+            <div class="card-head">
+              <h3 id="sec-quality-h" data-i18n="sec_quality"></h3>
+              <span class="count-chip" id="quality-chip"></span>
+            </div>
+            <div class="bars" id="quality-bars"></div>
+            <ul class="q-warn" id="quality-warnings"></ul>
+          </section>
+
+          <section class="card card-warn" aria-labelledby="sec-errors-h" id="errors-card" hidden>
+            <div class="card-head">
+              <h3 id="sec-errors-h" data-i18n="sec_errors"></h3>
+            </div>
+            <ul class="err-list" id="errors"></ul>
+          </section>
+        </div>
+      </div>
+
+      <div class="verify-box">
+        <span class="verify-ic" aria-hidden="true">⚠️</span>
+        <span>
+          <span data-i18n="verify_pre"></span>
+          <a class="link-verify" href="https://bhulekh.mahabhumi.gov.in" target="_blank"
+             rel="noopener noreferrer" data-i18n="verify_link"></a>
+          <span data-i18n="verify_post"></span>
+        </span>
+      </div>
+
+      <p class="disc" id="disclaimer"></p>
+
+      <div class="fb" id="fb">
+        <span data-i18n="fb"></span>
+        <button type="button" class="btn btn-sm btn-ghost" id="fb-yes" data-i18n="fbYes"></button>
+        <button type="button" class="btn btn-sm btn-ghost" id="fb-no" data-i18n="fbNo"></button>
+      </div>
+    </section>
+  </main>
+
   <footer class="site-foot">
-    <div>[Team Name] ने बनवले · [Hackathon Name] 2026</div>
-    <div><a href="https://github.com/your-org/satbara-saathi" target="_blank" rel="noopener noreferrer">GitHub वर पाहा</a> · v0.1 प्रोटोटाइप</div>
-    <div>मर्यादा: हस्तलिखित किंवा अस्पष्ट उतारे चुकीचे वाचले जाऊ शकतात.</div>
+    <div class="wrap">
+      <div class="foot-brand" data-i18n="foot_by"></div>
+      <div><a href="https://github.com/aijadugar/satbara-saathi" target="_blank"
+              rel="noopener noreferrer" data-i18n="foot_gh"></a> · <span data-i18n="foot_ver"></span></div>
+      <div class="foot-limit" data-i18n="foot_limit"></div>
+    </div>
   </footer>
 
-  <script src="/static/app.js"></script>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Injected rather than a static tag: re-pointing the src of a <script> that
+       has already 404'd does NOT re-request it, so the fallback needs a brand
+       new element to actually fetch the other path. -->
+  <script>
+    (function () {
+      var paths = [window.__assetBase + 'app.js', window.__assetOther + 'app.js'];
+      (function next(i) {
+        if (i >= paths.length) return;
+        var s = document.createElement('script');
+        s.src = paths[i];
+        s.onerror = function () { next(i + 1); };
+        document.body.appendChild(s);
+      })(0);
+    })();
+  </script>
 </body>
 
 </html>
