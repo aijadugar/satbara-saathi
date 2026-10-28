@@ -1,19 +1,89 @@
-:root{--pri:#1a5f7a;--ok:#2e7d32;--warn:#f57c00;--bad:#d32f2f;--bg:#fafafa}
+:root{
+  --pri:#1a5f7a;--ok:#2e7d32;--warn:#f57c00;--bad:#d32f2f;--bg:#fafafa;
+  /* Trust & hackathon tokens. Keep these in sync with index.html's inline
+     block – styles.css is the single source of truth for the SPA. */
+  --t-ink:#12302e;--t-bg:#eef5f3;--t-line:#c3d8d3;--t-accent:#0f6b5f;
+  --t-warn-bg:#fff4d6;--t-warn-ink:#5c4300;
+}
+@media (prefers-color-scheme: dark) {
+  :root{
+    --t-ink:#dcebe8;--t-bg:#162523;--t-line:#2f4a46;--t-accent:#5fc5b3;
+    --t-warn-bg:#3a2f10;--t-warn-ink:#f2dfa6;
+  }
+}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Noto Sans Devanagari','Noto Sans',system-ui,sans-serif;background:var(--bg);color:#212121;font-size:18px;line-height:1.6}
 .screen{display:none;max-width:480px;margin:0 auto;padding:24px 16px}
 .screen.active{display:block}
 h1{font-size:28px;color:var(--pri)}
+h2{font-size:22px;color:var(--pri)}
 .tag{color:#616161;margin-bottom:16px}
 .lang-row{display:flex;gap:8px;margin-bottom:16px}
 .lang-row button{flex:1;padding:10px;border:2px solid var(--pri);background:#fff;border-radius:8px;font-size:16px;cursor:pointer}
 .lang-row button.on{background:var(--pri);color:#fff}
-.consent{display:flex;gap:8px;margin-bottom:16px;font-size:15px}
+
+/* Hackathon banner */
+.hack-banner{
+  display:flex;flex-wrap:wrap;gap:.4rem .8rem;align-items:center;justify-content:center;
+  padding:.5rem .75rem;font-size:.85rem;background:var(--t-accent);color:#fff;
+}
+.hack-banner b{font-weight:700}
+.hack-banner .pill{
+  padding:.1rem .55rem;border-radius:999px;
+  border:1px solid rgba(255,255,255,.6);font-size:.78rem;
+}
+
+/* Trust / how-to section */
+.trust{display:grid;gap:.6rem;margin:1rem 0}
+.trust-item{
+  display:flex;gap:.65rem;align-items:flex-start;padding:.7rem .8rem;
+  border:1px solid var(--t-line);border-radius:10px;background:var(--t-bg);
+  color:var(--t-ink);font-size:.92rem;line-height:1.45;
+}
+.trust-item .ic{font-size:1.2rem;line-height:1.2}
+.trust-item strong{display:block}
+.how{margin:.5rem 0 1rem;border:1px solid var(--t-line);border-radius:10px;padding:.6rem .8rem;color:var(--t-ink);font-size:.92rem}
+.how summary{cursor:pointer;font-weight:600}
+.how summary:focus-visible,.link-verify:focus-visible{outline:3px solid var(--t-accent);outline-offset:2px}
+.how ol{margin:.6rem 0 0;padding-left:1.2rem;line-height:1.6}
+
+/* AI badge + verify box */
+.ai-badge{
+  display:inline-block;margin:0 0 .6rem;padding:.2rem .6rem;border-radius:999px;
+  background:var(--t-bg);border:1px solid var(--t-line);color:var(--t-ink);font-size:.82rem;
+}
+.verify-box{
+  margin:1rem 0;padding:.8rem;border-radius:10px;
+  background:var(--t-warn-bg);color:var(--t-warn-ink);font-size:.92rem;line-height:1.5;
+}
+.link-verify{color:inherit;font-weight:700}
+
+/* Footer */
+.site-foot{
+  margin:1.5rem 0 1rem;padding-top:1rem;border-top:1px solid var(--t-line);
+  font-size:.82rem;color:var(--t-ink);text-align:center;line-height:1.7;
+}
+.site-foot a{color:var(--t-accent)}
+
+/* Consent + upload */
+.consent{display:flex;gap:8px;margin-bottom:0;font-size:15px}
 .big{width:100%;padding:18px;font-size:20px;background:var(--pri);color:#fff;border:none;border-radius:12px;cursor:pointer}
-.err{color:var(--bad);margin-top:12px}
-.flag-card{border-left:6px solid;padding:12px;margin:8px 0;border-radius:8px;background:#fff}
+/* Upload is locked until the consent box is ticked. */
+.big:disabled{opacity:.45;cursor:not-allowed}
+.big:not(:disabled):focus-visible{outline:3px solid var(--t-accent);outline-offset:2px}
+.consent-hint{margin:-.5rem 0 .8rem;font-size:.85rem;color:var(--t-ink)}
+.consent-hint[hidden]{display:none}
+
+/* Results */
+.flag-card{border-left:6px solid var(--t-line);padding:12px;margin:8px 0;border-radius:8px;background:#fff}
 .flag-card.serious{border-color:var(--bad)}
 .flag-card.check{border-color:var(--warn)}
 .flag-card.info{border-color:#1976d2}
 .disc{font-size:13px;color:#757575;margin-top:24px}
 .fb{margin-top:16px;display:flex;gap:8px;align-items:center}
+.fb button{padding:8px 16px;border:1px solid var(--pri);background:#fff;border-radius:8px;cursor:pointer;font-size:15px}
+.err{color:var(--bad);margin-top:12px}
+
+@media (prefers-reduced-motion: no-preference) {
+  .trust-item{transition:border-color .15s}
+}
