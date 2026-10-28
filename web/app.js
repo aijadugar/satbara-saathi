@@ -1,93 +1,198 @@
 const $ = s => document.querySelector(s);
-const btnUpload = $('#btn-upload'), fileIn = $('#file');
-btnUpload.addEventListener('click', () => {
-  if (!$('#consent').checked) { $('#err').textContent = 'कृपया संमती द्या / Please consent first.'; $('#err').hidden = false; return; }
-  fileIn.click();
-});
+const btnUpload = $('#btn-upload'), fileIn = $('#file'), consent = $('#consent');
 
-// ── Language switching ──────────────────────────────────────────
-const LANG_LABELS = {
-  mr: { mr: 'मराठी', hi: 'हिंदी', en: 'English' },
-  hi: { mr: 'मराठी', hi: 'हिंदी', en: 'English' },
-  en: { mr: 'मराठी', hi: 'हिंदी', en: 'English' },
-};
+// ── Placeholders: edit these two values once, they appear in banner + footer ──
+const BRAND = { team: '[Team Name]', event: '[Hackathon Name]' };
 
+// ── Translations. Every element with data-i18n="key" is filled from here. ──
 const UI = {
   mr: {
+    docTitle: 'सातबारा साथी | Satbara Saathi',
+    docDesc: '७/१२ उतारा सोप्या मराठीत समजून घ्या. हॅकेथॉन प्रोजेक्ट.',
+    hack_title: 'हॅकेथॉन प्रोजेक्ट', hack_event: '{event} 2026', proto: 'प्रोटोटाइप',
     title: 'सातबारा साथी',
     tag: '७/१२ उतारा समजून घ्या',
+    trust_label: 'विश्वासार्हता',
+    trust1_h: 'तुमची माहिती सुरक्षित',
+    trust1_b: 'उतारा फक्त विश्लेषणासाठी वापरला जातो. खाते तयार करावे लागत नाही.',
+    trust2_h: 'कायदेशीर सल्ला नाही',
+    trust2_b: 'हे साधन समजून घेण्यासाठी आहे. कोणताही निर्णय घेण्यापूर्वी तलाठी किंवा वकिलांकडून खात्री करा.',
+    trust3_h: 'अधिकृत नोंदीशी पडताळा',
+    trust3_b: 'निकाल महाभूलेख वरील अधिकृत ७/१२ शी जुळवून पाहा.',
+    how_sum: 'हे कसे काम करते?',
+    how1: 'तुम्ही ७/१२ चा फोटो किंवा PDF अपलोड करता.',
+    how2: 'आम्ही त्यातील मजकूर वाचतो.',
+    how3: 'AI तो सोप्या भाषेत समजावतो आणि धोक्याचे मुद्दे दाखवतो.',
+    how4: 'तुम्ही अधिकृत नोंदीशी तपासून खात्री करता.',
     consent: 'मी समजतो/ते की हे केवळ माहितीसाठी आहे',
+    hint: 'अपलोड करण्यासाठी आधी वरील चौकोनावर खूण करा.',
     upload: '📷 अपलोड / फोटो काढा',
     results: 'विश्लेषण',
+    ai_badge: '🤖 AI ने तयार केले · अधिकृत दस्तऐवज नाही',
     listen: '🔊 ऐका',
+    verify_pre: '⚠️ AI कधी कधी चुकू शकतो. महत्त्वाच्या व्यवहारापूर्वी',
+    verify_link: 'महाभूलेख',
+    verify_post: 'वर किंवा तलाठी कार्यालयात खात्री करा.',
     disc: 'हे विश्लेषण केवळ माहितीसाठी आहे. कायदेशीर सल्ला नाही.',
-    fb: 'स्पष्ट होते का?',
-    fbYes: '✓ हो',
-    fbNo: '✗ नाही',
+    fb: 'स्पष्ट होते का?', fbYes: '✓ हो', fbNo: '✗ नाही',
+    foot_by: '{team} ने बनवले · {event} 2026',
+    foot_gh: 'GitHub वर पाहा', foot_ver: 'v0.1 प्रोटोटाइप',
+    foot_limit: 'मर्यादा: हस्तलिखित किंवा अस्पष्ट उतारे चुकीचे वाचले जाऊ शकतात.',
     err: 'त्रुटी',
   },
   hi: {
+    docTitle: 'सातबारा साथी | Satbara Saathi',
+    docDesc: '७/१२ उतारा आसान हिंदी में समझें। हैकथॉन प्रोजेक्ट।',
+    hack_title: 'हैकथॉन प्रोजेक्ट', hack_event: '{event} 2026', proto: 'प्रोटोटाइप',
     title: 'सातबारा साथी',
-    tag: '७/१२ उतारा समझें घ्या',
+    tag: '७/१२ उतारा समझें',
+    trust_label: 'विश्वसनीयता',
+    trust1_h: 'आपकी जानकारी सुरक्षित',
+    trust1_b: 'उतारे का उपयोग केवल विश्लेषण के लिए होता है। खाता बनाने की ज़रूरत नहीं।',
+    trust2_h: 'कानूनी सलाह नहीं',
+    trust2_b: 'यह टूल समझने में मदद के लिए है। कोई भी निर्णय लेने से पहले तलाठी या वकील से पुष्टि करें।',
+    trust3_h: 'आधिकारिक रिकॉर्ड से मिलान करें',
+    trust3_b: 'नतीजों को महाभूलेख पर उपलब्ध आधिकारिक ७/१२ से मिलाकर देखें।',
+    how_sum: 'यह कैसे काम करता है?',
+    how1: 'आप ७/१२ की फ़ोटो या PDF अपलोड करते हैं।',
+    how2: 'हम उसमें लिखा पाठ पढ़ते हैं।',
+    how3: 'AI उसे आसान भाषा में समझाता है और जोखिम वाले बिंदु दिखाता है।',
+    how4: 'आप आधिकारिक रिकॉर्ड से जाँचकर पुष्टि करते हैं।',
     consent: 'मैं समझता/समझती हूँ कि यह केवल जानकारी के लिए है',
+    hint: 'अपलोड करने के लिए पहले ऊपर दिए बॉक्स पर टिक करें।',
     upload: '📷 अपलोड / फोटो खींचें',
     results: 'विश्लेषण',
+    ai_badge: '🤖 AI द्वारा तैयार · आधिकारिक दस्तावेज़ नहीं',
     listen: '🔊 सुनें',
+    verify_pre: '⚠️ AI कभी-कभी ग़लती कर सकता है। किसी महत्वपूर्ण लेन-देन से पहले',
+    verify_link: 'महाभूलेख',
+    verify_post: 'पर या तलाठी कार्यालय में पुष्टि करें।',
     disc: 'यह विश्लेषण केवल जानकारी के लिए है। कानूनी सल्ला नहीं।',
-    fb: 'स्पष्ट था क्या?',
-    fbYes: '✓ हाँ',
-    fbNo: '✗ नहीं',
+    fb: 'स्पष्ट था क्या?', fbYes: '✓ हाँ', fbNo: '✗ नहीं',
+    foot_by: '{team} द्वारा निर्मित · {event} 2026',
+    foot_gh: 'GitHub पर देखें', foot_ver: 'v0.1 प्रोटोटाइप',
+    foot_limit: 'सीमा: हस्तलिखित या धुंधले उतारे ग़लत पढ़े जा सकते हैं।',
     err: 'त्रुटि',
   },
   en: {
+    docTitle: 'Satbara Saathi | सातबारा साथी',
+    docDesc: 'Understand your 7/12 extract in plain language. A hackathon project.',
+    hack_title: 'Hackathon project', hack_event: '{event} 2026', proto: 'Prototype',
     title: 'Satbara Saathi',
     tag: 'Understand the 7/12 extract',
+    trust_label: 'Trust and safety',
+    trust1_h: 'Your information is safe',
+    trust1_b: 'The extract is used only for analysis. No account is needed.',
+    trust2_h: 'Not legal advice',
+    trust2_b: 'This tool is here to help you understand. Confirm with the talathi or a lawyer before any decision.',
+    trust3_h: 'Check against official records',
+    trust3_b: 'Compare the results with the official 7/12 on Mahabhulekh.',
+    how_sum: 'How does it work?',
+    how1: 'You upload a photo or PDF of your 7/12.',
+    how2: 'We read the text on it.',
+    how3: 'AI explains it in simple language and points out risks.',
+    how4: 'You verify it against the official record.',
     consent: 'I understand this is for information only',
+    hint: 'Tick the box above to enable upload.',
     upload: '📷 Upload / Take photo',
     results: 'Analysis',
+    ai_badge: '🤖 Generated by AI · Not an official document',
     listen: '🔊 Listen',
+    verify_pre: '⚠️ AI can make mistakes. Before any important transaction, check on',
+    verify_link: 'Mahabhulekh',
+    verify_post: 'or at the talathi office.',
     disc: 'This analysis is for information only. It is not legal advice.',
-    fb: 'Was it clear?',
-    fbYes: '✓ Yes',
-    fbNo: '✗ No',
+    fb: 'Was it clear?', fbYes: '✓ Yes', fbNo: '✗ No',
+    foot_by: 'Built by {team} · {event} 2026',
+    foot_gh: 'View on GitHub', foot_ver: 'v0.1 prototype',
+    foot_limit: 'Limitation: handwritten or blurry extracts may be misread.',
     err: 'Error',
   },
 };
 
 let currentLang = 'mr';
-const langKey = l => (l === 'mr' ? 'mr' : l === 'hi' ? 'hi' : 'en');
+const langKey = l => (l === 'mr' || l === 'hi' ? l : 'en');
 const field = (obj, key) => obj[key] || obj.en || '';
+const fill = s => s.replace('{team}', BRAND.team).replace('{event}', BRAND.event);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => (
+  { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+function updateUploadState() {
+  const ok = consent.checked;
+  btnUpload.disabled = !ok;
+  $('#consent-hint').hidden = ok;
+  if (ok) $('#err').hidden = true;
+}
+
+// Read the latest analysis aloud. The browser's speech synthesiser does the
+// work – no backend call, so it works offline and needs no API key.
+let lastAnalysis = null;
+function speakAloud() {
+  if (!('speechSynthesis' in window)) {
+    $('#err').textContent = `${UI[currentLang].err}: speech not supported in this browser`;
+    $('#err').hidden = false;
+    return;
+  }
+  if (!lastAnalysis) return;
+  const t = UI[currentLang];
+  const parts = [];
+  if (lastAnalysis.summary) parts.push(lastAnalysis.summary);
+  for (const f of lastAnalysis.flags) {
+    const k = langKey(currentLang);
+    const title = field(f, 'title_' + k) || field(f, 'title_en');
+    const detail = field(f, 'detail_' + k) || field(f, 'detail_en');
+    parts.push(`${title}. ${detail}`);
+  }
+  const text = parts.join('. ') || t.listen;
+  const ut = new SpeechSynthesisUtterance(text);
+  ut.lang = currentLang === 'mr' ? 'mr-IN' : currentLang === 'hi' ? 'hi-IN' : 'en-US';
+  ut.rate = 0.95;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(ut);
+}
 
 function applyLang(lang) {
-  currentLang = lang;
-  document.documentElement.lang = lang === 'en' ? 'en' : lang === 'hi' ? 'hi' : 'mr';
+  currentLang = langKey(lang);
+  const t = UI[currentLang];
+  document.documentElement.lang = currentLang;
+  document.title = t.docTitle;
+  document.querySelector('meta[name="description"]').setAttribute('content', t.docDesc);
+
   document.querySelectorAll('.lang-row button').forEach(b => {
-    b.classList.toggle('on', b.dataset.lang === lang);
-    b.textContent = LANG_LABELS[lang][b.dataset.lang];
+    const on = b.dataset.lang === currentLang;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', String(on));
   });
-  const t = UI[lang];
-  $('#upload h1').textContent = t.title;
-  $('#upload .tag').textContent = t.tag;
-  $('#consent').nextSibling.textContent = ' ' + t.consent;
-  $('#btn-upload').textContent = t.upload;
-  $('#results h2').textContent = t.results;
-  $('#btn-listen').textContent = t.listen;
-  $('.disc').textContent = t.disc;
-  $('#fb-yes').textContent = t.fbYes;
-  $('#fb-no').textContent = t.fbNo;
-  $('#err').textContent = t.err;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = t[el.dataset.i18n];
+    if (v !== undefined) el.textContent = fill(v);
+  });
+  document.querySelectorAll('[data-i18n-label]').forEach(el => {
+    el.setAttribute('aria-label', t[el.dataset.i18nLabel]);
+  });
   $('#err').hidden = true;
+  updateUploadState();
 }
 
 document.querySelectorAll('.lang-row button').forEach(b => {
   b.addEventListener('click', () => applyLang(b.dataset.lang));
 });
+
+// Upload is only possible while the consent box is ticked.
+consent.addEventListener('change', updateUploadState);
+btnUpload.addEventListener('click', () => {
+  if (!consent.checked) { updateUploadState(); return; }
+  fileIn.click();
+});
+
 applyLang('mr');
 
 fileIn.addEventListener('change', async () => {
-  if (!$('#consent').checked) { alert('Consent required'); return; }
+  const file = fileIn.files[0];
+  if (!file) return;
+  if (!consent.checked) { fileIn.value = ''; updateUploadState(); return; }
   const fd = new FormData();
-  fd.append('file', fileIn.files[0]);
+  fd.append('file', file);
   fd.append('consent', 'true');
   fd.append('language', currentLang);
   fd.append('purpose', 'buying');
@@ -95,14 +200,23 @@ fileIn.addEventListener('change', async () => {
     const r = await fetch('/api/analyze', { method: 'POST', body: fd });
     if (!r.ok) { const e = await r.json(); throw new Error(e.detail || r.statusText); }
     const d = await r.json();
+    lastAnalysis = { summary: d.explanation?.summary, flags: d.flags || [] };
     $('#upload').classList.remove('active');
     $('#results').classList.add('active');
-    $('#summary').innerHTML = `<p>${d.explanation?.summary || ''}</p>`;
+    $('#summary').innerHTML = `<p>${esc(d.explanation?.summary)}</p>`;
     $('#flags').innerHTML = (d.flags || []).map(f => {
       const k = langKey(currentLang);
-      return `<div class="flag-card ${f.severity}"><b>${field(f, 'title_' + k)}</b>
-       <p>${field(f, 'detail_' + k)}</p></div>`;
+      return `<div class="flag-card ${esc(f.severity)}"><b>${esc(field(f, 'title_' + k))}</b>
+       <p>${esc(field(f, 'detail_' + k))}</p></div>`;
     }).join('');
-    $('#checklist').innerHTML = '<ol>' + (d.checklist || []).map(c => `<li>${c.title}</li>`).join('') + '</ol>';
-  } catch (e) { $('#err').textContent = e.message; $('#err').hidden = false; }
+    $('#checklist').innerHTML = '<ol>' + (d.checklist || []).map(c => `<li>${esc(c.title)}</li>`).join('') + '</ol>';
+    // Read the analysis aloud. No backend endpoint needed – the browser's
+    // speech synthesiser handles it, so this works offline too.
+    $('#btn-listen').onclick = () => speakAloud();
+  } catch (e) {
+    $('#err').textContent = `${UI[currentLang].err}: ${e.message}`;
+    $('#err').hidden = false;
+  } finally {
+    fileIn.value = '';   // lets the user re-pick the same file after an error
+  }
 });
