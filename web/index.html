@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>सातबारा साथी | Satbara Saathi</title>
   <meta name="description" content="७/१२ उतारा सोप्या मराठीत समजून घ्या. हॅकेथॉन प्रोजेक्ट.">
-  <link rel="stylesheet" href="/static/styles.css">
+  <!-- Relative paths so the web folder works standalone (file:// or any static
+       server). When served by the FastAPI app at "/", fall back to the "/static/"
+       mount so the root URL keeps working too. -->
+  <link rel="stylesheet" href="styles.css" onerror="this.onerror=null;this.href='/static/styles.css';">
 </head>
 
 <body>
@@ -86,7 +89,7 @@
     <div data-i18n="foot_limit"></div>
   </footer>
 
-  <script src="/static/app.js"></script>
+  <script src="app.js" onerror="this.onerror=null;this.src='/static/app.js';"></script>
 </body>
 
 </html>
