@@ -80,6 +80,33 @@ const UI = {
 
     sec_errors: 'तपासणीत आढळलेल्या त्रुटी',
 
+    /* Follow-up questions — voice or typed. Answers are assembled only from
+       the payload already on screen; there is no Q&A endpoint to ask. */
+    sec_ask: 'प्रश्न विचारा', ask_badge: 'फक्त या विश्लेषणावरून',
+    ask_sub: 'तुमच्या उताऱ्याबद्दल प्रश्न विचारा — बोलून किंवा लिहून. उत्तर फक्त वर दिलेल्या विश्लेषणावरून दिले जाते.',
+    ask_mic: 'बोलून विचारा', ask_mic_stop: 'ऐकत आहे… थांबवा',
+    ask_ph: 'किंवा इथे प्रश्न लिहा', ask_send: 'विचारा',
+    ask_heard: 'तुम्ही विचारले', ask_replay: 'पुन्हा ऐका',
+    ask_examples: 'असे विचारून पाहा',
+    ask_privacy: 'आवाज ओळखण्यासाठी ब्राउझर तुमचा आवाज इंटरनेटवर पाठवतो. उतारा मात्र फोनमधून बाहेर जात नाही.',
+    a_found: 'या उताऱ्यात एकूण {n} मुद्दे आढळले.',
+    a_serious_none: 'या उताऱ्यात गंभीर मुद्दे आढळले नाहीत.',
+    a_serious_head: 'गंभीर मुद्दे {n}:',
+    a_errors_none: 'तपासणीत कोणतीही त्रुटी आढळली नाही.',
+    a_errors_head: 'तपासणीत {n} त्रुटी आढळल्या:',
+    a_todo_head: 'काय करावे —',
+    a_next_head: 'पुढील पावले:',
+    a_quality_head: 'फोटोची गुणवत्ता {pct}% ({grade}).',
+    a_quality_bad: 'गुणवत्ता कमी असल्याने वाचन चुकू शकते. उजेडात, कागद सपाट ठेवून पुन्हा फोटो काढा.',
+    a_legal: 'हे साधन फक्त समजून घेण्यासाठी आहे, कायदेशीर सल्ला नाही.',
+    a_verify: 'निकाल महाभूलेख वरील अधिकृत ७/१२ शी पडताळून पाहा, किंवा तलाठी कार्यालयात खात्री करा.',
+    a_no_question: 'माफ करा, या प्रश्नाचे उत्तर दिलेल्या विश्लेषणात नाही. खालीलपैकी काही विचारून पाहा.',
+    ask_empty: 'काहीच ऐकू आले नाही. पुन्हा प्रयत्न करा.',
+    err_no_stt: 'या ब्राउझरमध्ये आवाज ओळख उपलब्ध नाही. कृपया प्रश्न लिहा.',
+    err_mic_denied: 'माइकची परवानगी मिळाली नाही. ब्राउझरमध्ये माइकला परवानगी द्या, किंवा प्रश्न लिहा.',
+    err_mic_network: 'आवाज ओळखण्यासाठी इंटरनेट लागते. इंटरनेट तपासा किंवा प्रश्न लिहा.',
+    err_mic_insecure: 'आवाज ओळख फक्त https किंवा localhost वर चालते. कृपया प्रश्न लिहा.',
+
     verify_pre: '⚠️ AI कधी कधी चुकू शकतो. महत्त्वाच्या व्यवहारापूर्वी',
     verify_link: 'महाभूलेख', verify_post: 'वर किंवा तलाठी कार्यालयात खात्री करा.',
     fb: 'हे स्पष्ट होते का?', fbYes: '✓ हो', fbNo: '✗ नाही', fb_thanks: 'अभिप्रायाबद्दल धन्यवाद!',
@@ -162,6 +189,31 @@ const UI = {
     q_good: 'अच्छी', q_fair: 'ठीक', q_poor: 'कम',
 
     sec_errors: 'जाँच में मिली त्रुटियाँ',
+
+    sec_ask: 'सवाल पूछें', ask_badge: 'सिर्फ़ इस विश्लेषण से',
+    ask_sub: 'अपने उतारे के बारे में सवाल पूछें — बोलकर या लिखकर। जवाब सिर्फ़ ऊपर दिए विश्लेषण से दिया जाता है।',
+    ask_mic: 'बोलकर पूछें', ask_mic_stop: 'सुन रहा है… रोकें',
+    ask_ph: 'या यहाँ सवाल लिखें', ask_send: 'पूछें',
+    ask_heard: 'आपने पूछा', ask_replay: 'फिर से सुनें',
+    ask_examples: 'ऐसे पूछकर देखें',
+    ask_privacy: 'आवाज़ पहचानने के लिए ब्राउज़र आपकी आवाज़ इंटरनेट पर भेजता है। उतारा फ़ोन से बाहर नहीं जाता।',
+    a_found: 'इस उतारे में कुल {n} बिंदु मिले।',
+    a_serious_none: 'इस उतारे में कोई गंभीर बिंदु नहीं मिला।',
+    a_serious_head: 'गंभीर बिंदु {n}:',
+    a_errors_none: 'जाँच में कोई त्रुटि नहीं मिली।',
+    a_errors_head: 'जाँच में {n} त्रुटियाँ मिलीं:',
+    a_todo_head: 'क्या करना चाहिए —',
+    a_next_head: 'आगे के कदम:',
+    a_quality_head: 'फ़ोटो की गुणवत्ता {pct}% ({grade})।',
+    a_quality_bad: 'गुणवत्ता कम है, इसलिए पढ़ने में गलती हो सकती है। रोशनी में, कागज़ सपाट रखकर फिर से फ़ोटो लें।',
+    a_legal: 'यह साधन सिर्फ़ समझने के लिए है, कानूनी सलाह नहीं।',
+    a_verify: 'नतीजे को महाभूलेख पर अधिकृत ७/१२ से मिलाकर देखें, या तहसील कार्यालय में पुष्टि करें।',
+    a_no_question: 'माफ़ कीजिए, इस सवाल का जवाब दिए गए विश्लेषण में नहीं है। नीचे दिए सवालों में से कोई पूछें।',
+    ask_empty: 'कुछ सुनाई नहीं दिया। फिर कोशिश करें।',
+    err_no_stt: 'इस ब्राउज़र में आवाज़ पहचान उपलब्ध नहीं है। कृपया सवाल लिखें।',
+    err_mic_denied: 'माइक की अनुमति नहीं मिली। ब्राउज़र में माइक की अनुमति दें, या सवाल लिखें।',
+    err_mic_network: 'आवाज़ पहचान के लिए इंटरनेट चाहिए। इंटरनेट जाँचें या सवाल लिखें।',
+    err_mic_insecure: 'आवाज़ पहचान सिर्फ़ https या localhost पर चलती है। कृपया सवाल लिखें।',
 
     verify_pre: '⚠️ AI कभी-कभी ग़लती कर सकता है। किसी महत्वपूर्ण लेन-देन से पहले',
     verify_link: 'महाभूलेख', verify_post: 'पर या तलाठी कार्यालय में पुष्टि करें।',
@@ -246,6 +298,31 @@ const UI = {
 
     sec_errors: 'Issues found while reading the document',
 
+    sec_ask: 'Ask a question', ask_badge: 'From this analysis only',
+    ask_sub: 'Ask about your extract — by voice or by typing. Answers come only from the analysis above.',
+    ask_mic: 'Ask by voice', ask_mic_stop: 'Listening… stop',
+    ask_ph: 'Or type your question here', ask_send: 'Ask',
+    ask_heard: 'You asked', ask_replay: 'Play again',
+    ask_examples: 'Try asking',
+    ask_privacy: 'Your browser sends your voice over the internet to recognise it. The extract itself never leaves the device.',
+    a_found: 'This extract raised {n} issues.',
+    a_serious_none: 'This extract raised no serious issues.',
+    a_serious_head: 'Serious issues ({n}):',
+    a_errors_none: 'No validation errors were found.',
+    a_errors_head: '{n} validation errors were found:',
+    a_todo_head: 'What to do —',
+    a_next_head: 'Next steps:',
+    a_quality_head: 'Photo quality is {pct}% ({grade}).',
+    a_quality_bad: 'That is low, so the reading may be wrong. Retake the photo in good light with the paper flat.',
+    a_legal: 'This tool is for understanding only. It is not legal advice.',
+    a_verify: 'Check the result against the official 7/12 on Mahabhulekh, or confirm at the Talathi office.',
+    a_no_question: 'Sorry, this analysis does not answer that. Try one of the questions below.',
+    ask_empty: "I didn't catch that. Please try again.",
+    err_no_stt: 'Voice input is not available in this browser. Please type your question.',
+    err_mic_denied: 'Microphone permission was denied. Allow the mic in your browser, or type your question.',
+    err_mic_network: 'Voice recognition needs an internet connection. Check your connection or type your question.',
+    err_mic_insecure: 'Voice input only works over https or localhost. Please type your question.',
+
     verify_pre: '⚠️ AI can make mistakes. Before any important transaction, check on',
     verify_link: 'Mahabhulekh', verify_post: 'or at the talathi office.',
     fb: 'Was this clear?', fbYes: '✓ Yes', fbNo: '✗ No', fb_thanks: 'Thanks for the feedback!',
@@ -324,8 +401,10 @@ function applyLang(lang) {
   });
 
   $$('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
+  $$('[data-i18n-ph]').forEach((el) => { el.setAttribute('placeholder', t(el.dataset.i18nPh)); });
 
   syncConsentUI();
+  syncAsk();
   hideError();
 
   // The whole result view is rebuilt from the payload, so switching language
@@ -730,6 +809,287 @@ function renderErrors(errors) {
   $('#errors').innerHTML = list.map((e) => `<li>${esc(e)}</li>`).join('');
 }
 
+/* ── Voice follow-up ─────────────────────────────────────────────
+   "No hands" input: ask a question out loud, hear the answer. The backend has
+   no Q&A endpoint (app/main.py exposes only /health, /api/analyze and
+   /api/stats), so every answer is assembled from the payload already on
+   screen. A question this analysis cannot answer is refused, not guessed at. */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const canHear = !!SR;
+
+/** Devanagari ASR output varies (nukta, zero-width joiners), so fold both the
+    transcript and the keyword tables through this before comparing. */
+const normAsk = (s) => String(s || '')
+  .toLowerCase()
+  .replace(/[​-‍﻿़]/g, '')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+// Priority order — an entry listed earlier wins a tie. Keywords are matched as
+// substrings, so a long phrase outscores a short word that happens to fit.
+const ASK_INTENTS = [
+  { id: 'serious', kw: ['गंभीर मुद्दे', 'गंभीर बिंदु', 'गंभीर', 'धोकादायक', 'धोका', 'महत्त्वाच',
+      'लक्ष देण्यासारख', 'खतरा', 'ज़रूरी', 'जरूरी', 'महत्वपूर्ण',
+      'serious', 'critical', 'risk', 'danger', 'urgent', 'major'] },
+  { id: 'errors', kw: ['त्रुटी', 'त्रुटियाँ', 'त्रुटि', 'चूक', 'गलती', 'अपूर्ण', 'अधूरा',
+      'error', 'invalid', 'missing', 'incomplete', 'validation'] },
+  { id: 'quality', kw: ['फोटो', 'गुणवत्ता', 'स्पष्ट', 'अस्पष्ट', 'प्रकाश', 'रोशनी', 'अंधार',
+      'साफ', 'धुंधल', 'photo', 'picture', 'image', 'quality',
+      'blur', 'blurry', 'clear', 'bright', 'dark', 'sharp'] },
+  { id: 'todo', kw: ['काय करावे', 'करावे', 'करायचे', 'करू', 'पुढील', 'पावल', 'उपाय',
+      'क्या करना', 'करना चाहिए', 'करें', 'करूँ', 'आगे', 'कदम',
+      'what do', 'what should', 'should i', 'next', 'step', 'action', 'fix', 'remedy'] },
+  { id: 'legal', kw: ['कायदेशीर', 'कानूनी', 'सल्ला', 'सलाह', 'वकील', 'खात्री',
+      'legal', 'advice', 'lawyer', 'court', 'attorney', 'valid'] },
+  { id: 'verify', kw: ['पडताळ', 'तलाठी', 'महाभूलेख', 'कुठे', 'कहाँ', 'जाँच', 'सत्यापन', 'तहसील',
+      'where', 'verify', 'official', 'mahabhulekh', 'bhulekh', 'portal', 'confirm'] },
+  { id: 'summary', kw: ['सारांश', 'समजाव', 'सोप्या', 'थोडक्यात', 'म्हणजे काय', 'सार',
+      'समझा', 'आसान', 'संक्षेप',
+      'summary', 'explain', 'simple', 'overview', 'mean', 'brief', 'tldr'] },
+  { id: 'flags', kw: ['मुद्दे', 'मुद्दा', 'आढळ', 'समस्या', 'अडचण', 'बिंदु', 'बिंदू', 'दिक्कत',
+      'issue', 'problem', 'flag', 'finding', 'found', 'matter', 'wrong'] },
+];
+
+/** Which intent the question is closest to, or null if nothing fits. */
+function askIntent(text) {
+  const q = normAsk(text);
+  let best = null;
+  ASK_INTENTS.forEach((intent, prio) => {
+    let score = 0;
+    intent.kw.forEach((k) => { const n = normAsk(k); if (q.includes(n)) score += n.length; });
+    if (!score) return;
+    const total = score * 10 - prio;
+    if (!best || total > best.total) best = { id: intent.id, total };
+  });
+  return best && best.id;
+}
+
+const ASK_CHIPS = {
+  mr: ['कोणते मुद्दे आढळले?', 'काय करावे?', 'फोटो ठीक आहे का?', 'कोणत्या त्रुटी आहेत?', 'सारांश सांगा'],
+  hi: ['कौन-कौन से बिंदु मिले?', 'क्या करना चाहिए?', 'फ़ोटो ठीक है?', 'कौन-सी त्रुटियाँ हैं?', 'सारांश बताइए'],
+  en: ['What issues were found?', 'What should I do?', 'Is the photo good enough?',
+    'What errors were found?', 'Give me the summary'],
+};
+
+/** Build the spoken answer for an intent, entirely from the current payload. */
+function askCompose(id) {
+  const r = lastResult || {};
+  const flags = Array.isArray(r.flags) ? r.flags : [];
+  const errors = Array.isArray(r.validation_errors) ? r.validation_errors : [];
+  const steps = Array.isArray(r.checklist) ? r.checklist : [];
+  const q = r.quality || {};
+
+  const line = (f) => (flagTodo(f) ? `${flagTitle(f)} — ${flagTodo(f)}` : flagTitle(f));
+  const listOf = (arr, n) => arr.slice(0, n).map(line).join('. ');
+  const bySev = (s) => flags.filter((f) => (f.severity || 'info') === s);
+
+  switch (id) {
+    case 'serious': {
+      const list = bySev('serious');
+      return list.length
+        ? `${t('a_serious_head', { n: list.length })} ${listOf(list, 3)}`
+        : t('a_serious_none');
+    }
+
+    case 'errors':
+      return errors.length
+        ? `${t('a_errors_head', { n: errors.length })} ${errors.slice(0, 3).join('. ')}`
+        : t('a_errors_none');
+
+    case 'quality': {
+      const score = Number(q.overall_score) || 0;
+      const head = t('a_quality_head', {
+        pct: Math.round(score * 100),
+        grade: t(gradeOf(score).label),
+      });
+      if (q.is_acceptable === false) return `${head} ${t('a_quality_bad')}`;
+      const warns = Array.isArray(q.warnings) ? q.warnings.slice(0, 2).join('. ') : '';
+      return warns ? `${head} ${warns}` : `${head} ${t('quality_ok')}`;
+    }
+
+    case 'todo': {
+      const todos = flags.map((f) => flagTodo(f)).filter(Boolean).slice(0, 3);
+      const parts = [];
+      if (todos.length) parts.push(`${t('a_todo_head')} ${todos.join('. ')}`);
+      if (steps.length) parts.push(`${t('a_next_head')} ${steps.slice(0, 4).map((s) => s.title).join('. ')}`);
+      return parts.length ? parts.join(' ') : t('no_flags');
+    }
+
+    case 'legal':
+      return `${t('a_legal')} ${r.disclaimer || ''}`.trim();
+
+    case 'verify':
+      return t('a_verify');
+
+    case 'summary':
+      return (r.explanation && r.explanation.summary) || t('no_flags');
+
+    case 'flags':
+    default: {
+      if (!flags.length) return t('no_flags');
+      const counts = [
+        bySev('serious').length ? `${t('count_serious')}: ${bySev('serious').length}` : '',
+        bySev('check').length ? `${t('count_check')}: ${bySev('check').length}` : '',
+      ].filter(Boolean).join(', ');
+      const head = t('a_found', { n: flags.length });
+      return `${head}${counts ? ` (${counts})` : ''} ${listOf(flags, 4)}`;
+    }
+  }
+}
+
+/* ── Ask UI state ───────────────────────────────────────────── */
+let recog = null;          // live SpeechRecognition, if any
+let listening = false;
+let askLog = [];           // [{q, a}] for this job — the follow-up transcript
+let askJobId = null;
+
+function askFail(msg) {
+  const el = $('#ask-err');
+  el.textContent = msg;
+  el.hidden = false;
+}
+function askFailClear() { $('#ask-err').hidden = true; }
+
+function micLabel(on) {
+  const btn = $('#btn-mic');
+  if (!btn) return;
+  btn.querySelector('span').textContent = on ? t('ask_mic_stop') : t('ask_mic');
+  btn.setAttribute('aria-pressed', String(on));
+  btn.classList.toggle('is-listening', on);
+}
+
+function stopListening() {
+  if (recog) { try { recog.abort(); } catch { /* already finished */ } }
+  recog = null;
+  listening = false;
+  micLabel(false);
+}
+
+function startListening() {
+  if (!canHear) { askFail(t('err_no_stt')); return; }
+  if (!window.isSecureContext) { askFail(t('err_mic_insecure')); return; }
+  askFailClear();
+  stopSpeaking();   // otherwise the mic hears our own summary and answers itself
+  stopListening();
+
+  const r = new SR();
+  r.lang = currentLang === 'mr' ? 'mr-IN' : currentLang === 'hi' ? 'hi-IN' : 'en-IN';
+  r.continuous = false;
+  r.interimResults = false;
+  r.maxAlternatives = 1;
+
+  // A late event from a previous recogniser must not clobber the current one.
+  const finish = () => { if (recog === r) { listening = false; micLabel(false); } };
+
+  r.onresult = (e) => {
+    finish();
+    const alt = e.results[0] && e.results[0][0];
+    const said = ((alt && alt.transcript) || '').trim();
+    if (said) ask(said);
+  };
+  r.onerror = (e) => {
+    finish();
+    const key = {
+      'not-allowed': 'err_mic_denied',
+      'service-not-allowed': 'err_mic_denied',
+      'audio-capture': 'err_mic_denied',
+      network: 'err_mic_network',
+      'no-speech': 'ask_empty',
+    }[e.error];
+    if (key) askFail(t(key));   // 'aborted' is our own stop — stay quiet
+  };
+  r.onend = finish;
+
+  recog = r;
+  try { r.start(); } catch { recog = null; askFail(t('err_no_stt')); return; }
+  listening = true;
+  micLabel(true);
+}
+
+/** Answer a question — spoken and written — and add it to the transcript. */
+function ask(text) {
+  const said = String(text || '').trim();
+  if (!said || !lastResult) return;
+  askFailClear();
+  const id = askIntent(said);
+  const answer = id ? askCompose(id) : t('a_no_question');
+  askLog.push({ q: said, a: answer });
+  if (askLog.length > 4) askLog.shift();   // keep the last few turns only
+  renderAskLog();
+  speakText(answer);
+}
+
+function renderAskLog() {
+  const box = $('#ask-log');
+  if (!box) return;
+  box.innerHTML = askLog.map((turn, i) => `
+    <div class="ask-turn">
+      <p class="ask-q"><span class="ask-who">${esc(t('ask_heard'))}</span> ${esc(turn.q)}</p>
+      <p class="ask-a">${esc(turn.a)}</p>
+      <button type="button" class="btn btn-sm btn-ghost ask-replay" data-i="${i}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 9.5h3l4-3.5v12l-4-3.5H4z" />
+          <path d="M15.5 9a4 4 0 0 1 0 6" />
+        </svg>
+        <span>${esc(t('ask_replay'))}</span>
+      </button>
+    </div>`).join('');
+}
+
+function renderAskChips() {
+  const box = $('#ask-chips');
+  if (!box) return;
+  const chips = ASK_CHIPS[currentLang] || ASK_CHIPS.en;
+  box.innerHTML = chips
+    .map((q) => `<button type="button" class="ask-chip">${esc(q)}</button>`).join('');
+}
+
+/** Re-label and re-populate the ask card. Called on every language change. */
+function syncAsk() {
+  const mic = $('#btn-mic');
+  if (!mic) return;
+
+  // Voice needs both a recogniser and a secure origin: localhost and https
+  // qualify, a phone on http://192.168.x.x does not. Hide rather than offer a
+  // button that cannot work; the typed box stays as the fallback.
+  const usable = canHear && window.isSecureContext;
+  mic.hidden = !usable;
+  const why = $('#ask-why');
+  why.hidden = usable;
+  if (!usable) why.textContent = canHear ? t('err_mic_insecure') : t('err_no_stt');
+
+  micLabel(listening);
+  renderAskChips();
+  renderAskLog();
+}
+
+$('#btn-mic').addEventListener('click', () => {
+  if (listening) stopListening(); else startListening();
+});
+
+$('#ask-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const input = $('#ask-input');
+  const said = input.value.trim();
+  if (!said) return;
+  input.value = '';
+  stopListening();
+  ask(said);
+});
+
+$('#ask-chips').addEventListener('click', (e) => {
+  const chip = e.target.closest('.ask-chip');
+  if (chip) ask(chip.textContent);
+});
+
+$('#ask-log').addEventListener('click', (e) => {
+  const btn = e.target.closest('.ask-replay');
+  if (!btn) return;
+  const turn = askLog[Number(btn.dataset.i)];
+  if (turn) speakText(turn.a);
+});
+
 /* ── Whole result view ──────────────────────────────────────── */
 function renderResults(data) {
   const flags = Array.isArray(data.flags) ? data.flags : [];
@@ -737,6 +1097,16 @@ function renderResults(data) {
   const checklist = Array.isArray(data.checklist) ? data.checklist : [];
 
   $('#res-job').textContent = data.job_id ? `#${data.job_id}` : '';
+
+  // A new job starts a fresh follow-up transcript; re-rendering the same job
+  // (which is what a language switch does) must keep the existing one.
+  const jobId = data.job_id || 'anon';
+  if (jobId !== askJobId) {
+    askJobId = jobId;
+    askLog = [];
+    askFailClear();
+    renderAskLog();
+  }
 
   renderVerdict(flags, errors);
   renderFlags(flags);
@@ -794,17 +1164,31 @@ function stopSpeaking() {
   setListenLabel(false);
 }
 
+/** Speak arbitrary text in the current language. Cancels whatever was playing
+    first, so the mic never picks up our own voice mid-question. */
+function speakText(text, onDone) {
+  if (!canSpeak || !text) return false;
+  try {
+    const ut = new SpeechSynthesisUtterance(text);
+    ut.lang = currentLang === 'mr' ? 'mr-IN' : currentLang === 'hi' ? 'hi-IN' : 'en-US';
+    ut.rate = 0.95;
+    if (onDone) { ut.onend = onDone; ut.onerror = onDone; }
+    speechSynthesis.cancel();
+    speechSynthesis.speak(ut);
+    return true;
+  } catch {
+    // A speech engine that refuses to start must not cost the user the answer.
+    if (onDone) onDone();
+    return false;
+  }
+}
+
 function speakAloud() {
   if (!canSpeak) { showError(t('err_speech')); return; }
   const text = speechText();
   if (!text) return;
-  const ut = new SpeechSynthesisUtterance(text);
-  ut.lang = currentLang === 'mr' ? 'mr-IN' : currentLang === 'hi' ? 'hi-IN' : 'en-US';
-  ut.rate = 0.95;
-  ut.onend = () => { speaking = false; setListenLabel(false); };
-  ut.onerror = () => { speaking = false; setListenLabel(false); };
-  speechSynthesis.cancel();
-  speechSynthesis.speak(ut);
+  const done = () => { speaking = false; setListenLabel(false); };
+  if (!speakText(text, done)) return;
   speaking = true;
   setListenLabel(true);
 }
@@ -882,6 +1266,11 @@ $('#fb-no').addEventListener('click', () => answerFeedback(false));
 /* ── Start over ─────────────────────────────────────────────── */
 function resetToUpload() {
   stopSpeaking();
+  stopListening();
+  askJobId = null;
+  askLog = [];
+  askFailClear();
+  renderAskLog();
   lastResult = null;
   renderChecklist([], 'anon');
   $('#flags').innerHTML = '';
