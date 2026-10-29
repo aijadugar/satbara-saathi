@@ -5,7 +5,7 @@
 'use strict';
 
 // ── TODO: edit these two values once — they appear in the banner and footer ──
-const BRAND = { team: '[Team Name]', event: '[Hackathon Name]' };
+const BRAND = { team: 'Ankit Bari', event: 'No Hands: The Wispr Challenge' };
 
 const MAX_BYTES = 10 * 1024 * 1024; // must match MAX_FILE_SIZE in app/pipeline/preprocess.py
 
