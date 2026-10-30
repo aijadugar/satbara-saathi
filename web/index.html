@@ -263,6 +263,47 @@
             </div>
           </article>
 
+          <!-- Follow-up questions, by voice or by typing. There is no Q&A
+               endpoint on the backend, so every answer is assembled from the
+               analysis already on screen — nothing here invents land facts. -->
+          <section class="card card-ask" aria-labelledby="sec-ask-h">
+            <div class="card-head">
+              <h3 id="sec-ask-h" data-i18n="sec_ask"></h3>
+              <span class="badge-ai" data-i18n="ask_badge"></span>
+            </div>
+            <p class="muted small" data-i18n="ask_sub"></p>
+
+            <div class="ask-bar">
+              <button type="button" class="btn btn-primary" id="btn-mic" aria-pressed="false" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="3" width="6" height="11" rx="3" />
+                  <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0" />
+                  <path d="M12 17.5V21" />
+                </svg>
+                <span data-i18n="ask_mic"></span>
+              </button>
+
+              <form class="ask-type" id="ask-form" autocomplete="off">
+                <input type="text" id="ask-input" data-i18n-ph="ask_ph"
+                       enterkeyhint="send" aria-label="प्रश्न / Question">
+                <button type="submit" class="btn btn-ghost" id="btn-ask-send" data-i18n="ask_send"></button>
+              </form>
+            </div>
+
+            <p class="ask-why" id="ask-why" hidden></p>
+
+            <div class="ask-log" id="ask-log" aria-live="polite"></div>
+
+            <div class="ask-try">
+              <span class="muted small" data-i18n="ask_examples"></span>
+              <div class="ask-chips" id="ask-chips"></div>
+            </div>
+
+            <p class="ask-note" data-i18n="ask_privacy"></p>
+            <p class="err" id="ask-err" role="alert" hidden></p>
+          </section>
+
           <section class="card" aria-labelledby="sec-flags-h">
             <div class="card-head">
               <h3 id="sec-flags-h" data-i18n="sec_flags"></h3>
