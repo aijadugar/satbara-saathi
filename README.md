@@ -4,11 +4,6 @@
 
 Upload a photo or scan of a 7/12. Satbara Saathi reads it, flags things worth a closer look, explains everything in simple language, and can read the summary aloud.
 
-> ⚠️ **Satbara Saathi is an explanation tool, not legal advice.** It never declares land "safe" or "unsafe". Always verify important decisions with a qualified lawyer and the official land records office.
-
-📺 **Demo video:** [add link here]
-🌐 **Live demo:** [add link here, if hosted]
-
 ---
 
 ## Table of contents
@@ -25,9 +20,6 @@ Upload a photo or scan of a 7/12. Satbara Saathi reads it, flags things worth a 
 10. [Testing and evaluation](#testing-and-evaluation)
 11. [Privacy](#privacy)
 12. [Limitations](#limitations)
-13. [Roadmap](#roadmap)
-14. [Contributing](#contributing)
-15. [License](#license)
 
 ---
 
